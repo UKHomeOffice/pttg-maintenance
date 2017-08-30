@@ -7,20 +7,22 @@ ENV NAME pttg-maintenance
 ENV JAR_PATH build/libs
 ARG VERSION
 
-WORKDIR /html
+WORKDIR /htmltemp
 
 RUN groupadd -r ${GROUP} && \
-    useradd -r -g ${USER} ${GROUP} -d /html && \
-    mkdir -p /html && \
-    chown -R ${USER}:${GROUP} /html
+    useradd -r -g ${USER} ${GROUP} -d /htmltemp && \
+    mkdir -p /htmltemp && \
+    chown -R ${USER}:${GROUP} /htmltemp
 
-COPY index.html /html
-RUN chmod a+x /html/index.html
+COPY index.html /htmltemp
+RUN chmod a+x /htmltemp/index.html
 
 
 EXPOSE 8081
 
 USER pttg
 
+CMD exec /bin/bash cp ./index.html /html
+CMD exec /bin/bash ls /
 CMD exec /bin/bash -c "trap : TERM INT; sleep infinity & wait"
 
