@@ -15,12 +15,10 @@ RUN groupadd -r ${GROUP} && \
     chown -R ${USER}:${GROUP} /html
 
 COPY index.html /html
-#COPY run.sh /app
-
-#RUN chmod a+x /app/run.sh
 
 EXPOSE 8081
 
 USER pttg
 
-#ENTRYPOINT /app/run.sh
+CMD exec /bin/bash -c "trap : TERM INT; sleep infinity & wait"
+
