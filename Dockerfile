@@ -15,6 +15,8 @@ RUN groupadd -r ${GROUP} && \
     chown -R ${USER}:${GROUP} /html
 
 COPY index.html /html
+RUN chmod a+x /html/index.html
+
 
 EXPOSE 8081
 
