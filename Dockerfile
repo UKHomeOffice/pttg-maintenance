@@ -7,20 +7,17 @@ ENV NAME pttg-maintenance
 ENV JAR_PATH build/libs
 ARG VERSION
 
-WORKDIR /htmltemp
+WORKDIR /htmlstatic
 
 RUN groupadd -r ${GROUP} && \
-    useradd -r -g ${USER} ${GROUP} -d /htmltemp && \
-    mkdir -p /htmltemp && \
-    chown -R ${USER}:${GROUP} /htmltemp
+    useradd -r -g ${USER} ${GROUP} -d /htmlstatic && \
+    mkdir -p /htmlstatic && \
+    chown -R ${USER}:${GROUP} /htmlstatic
 
 
-COPY index.html /htmltemp
-RUN chmod a+x /htmltemp/index.html
+COPY index.html /htmlstatic
+RUN chmod a+x /htmlstatic/index.html
 
-
-RUN mkdir /htmlstatic
-RUN cp ./index.html /htmlstatic
 VOLUME /htmlstatic
 
 
