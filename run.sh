@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
 cd /htmltemp
-cp index.html /htmlstatic
+cp -a . /htmlstatic
 sleep infinity

@@ -1,1 +1,1 @@
-# pttg-maintenance
+Provides a maintenance page that can be displayed after an ingress update
